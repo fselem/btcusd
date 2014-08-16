@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+# Outputs the current market data for 
+# the BTC to USD conversion.
+
+require "net/http"
+require "uri"
+require "json"
+
+def help()
+	puts "btcusd [OPTIONS] [VALUE]"
+	puts "OPTIONS:"
+	puts "-h\t\t--help\t\tDisplays this message"
+	puts "-u\t\t--usd\t\tConverts USD to BTC"
+	puts "-b\t\t--btc\t\tConverts BTC to USD"
+end
+
+btcdata = `curl -s https://blockchain.info/ticker`
+btcdata = JSON.parse( btcdata );
+
+conv = btcdata["USD"]["15m"].to_f
+
+if ARGV.length == 0
+	puts "#{conv} USD = 1.00 BTC";
+	exit
+end
+
+if ARGV[0] == "-h" || ARGV[0] == "--help"
+	help();
+	exit
+end
+
+if ARGV.join( " " ) =~ /^ *(-u|--usd|-b|--btc) *=? *([0-9]+(\.[0-9]+)?) *$/i
+
+	if $1 == "-u" || $1 == "--usd"
+		tobtc = $2.to_f / conv
+		puts "#{$2} USD = #{tobtc} BTC"
+	elsif $1 == "-b" || $1 == "--btc"
+		tousd = $2.to_f * conv
+		puts "#{$2} BTC = #{tousd} USD"
+	end
+
+	exit
+end
+
+help()
+
