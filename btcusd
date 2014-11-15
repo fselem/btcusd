@@ -10,9 +10,9 @@ require "json"
 def help()
 	puts "btcusd [OPTIONS] [VALUE]"
 	puts "OPTIONS:"
-	puts "-h\t\t--help\t\tDisplays this message"
-	puts "-u\t\t--usd\t\tConverts USD to BTC"
-	puts "-b\t\t--btc\t\tConverts BTC to USD"
+	puts "-h\t\t\t--help\t\t\tDisplays this message"
+	puts "-u <DOUBLE>\t\t--usd <DOUBLE>\t\tConverts USD to BTC"
+	puts "-b <DOUBLE>\t\t--btc <DOUBLE>\t\tConverts BTC to USD"
 end
 
 btcdata = `curl -s https://blockchain.info/ticker`
