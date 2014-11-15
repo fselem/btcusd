@@ -3,7 +3,7 @@
 
 Simple Bitcoin to USD (vice-versa) converter.
 
-*All data retrieved from [Blockchain](https://blockchain.info)*
+**All data retrieved from [Blockchain](https://blockchain.info)**
 
 ## USAGE ##
 
